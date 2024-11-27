@@ -14,9 +14,10 @@ import java.util.UUID;
 
 public class ExampleAugmentosAppService extends SmartGlassesAndroidService {
     public final String TAG = "ExampleAugmentOSApp_ExampleService";
-    static final String appName = "ExampleAugmentOSApp";
+    static final String appName = "Example AugmentOS App";
+    static final String appDescription = "Some description";
 
-    //our instance of the AugmentOS library
+    // Our instance of the AugmentOS library
     public AugmentOSLib augmentOSLib;
 
     public ExampleAugmentosAppService() {
@@ -30,39 +31,37 @@ public class ExampleAugmentosAppService extends SmartGlassesAndroidService {
         // Create AugmentOSLib instance with context: this
         augmentOSLib = new AugmentOSLib(this);
 
-        // Define command
-//        UUID exampleAppCommandUUID = UUID.fromString("aef7e07f-5c36-42f2-a808-21074b32bb28");
-//        String[] phrases = new String[]{"Fact Checker", "Fact check"};
-//        String description = "Fact check your conversation with ChatGPT!";
-//        AugmentOSCommand startExampleAugmentosAppCommand = new AugmentOSCommand(this::someExampleCallback, appName, exampleAppCommandUUID, phrases, description);
+        // Register the app with AugmentOS
+        augmentOSLib.registerApp(appName, appDescription);
 
-        augmentOSLib.registerApp("Example App", "Example app description");
-
-        //Subscribe to transcription stream
+        // Subscribe to a data stream (ex: transcription), and specify a callback function
         augmentOSLib.subscribe(DataStreamType.TRANSCRIPTION_ENGLISH_STREAM, this::processTranscriptionCallback);
-
-        /* Handle ExampleAugmentosApp specific things */
-
-        EventBus.getDefault().register(this);
     }
 
 
     @Override
     public void onDestroy() {
         Log.d(TAG, "onDestroy: Called");
-        EventBus.getDefault().unregister(this);
         augmentOSLib.deinit();
         super.onDestroy();
     }
 
-    public void someExampleCallback(String args, long commandTriggeredTime) {
-        Log.d(TAG, "someExampleCallback: someExampleCallback called");
-        augmentOSLib.sendReferenceCard(appName, "someExampleCallback was called");
-    }
-
     public void processTranscriptionCallback(String transcript, long timestamp, boolean isFinal) {
         Log.d(TAG, "Got a transcript: " + transcript);
-        augmentOSLib.sendReferenceCard("Example TPA Live Captions", transcript);
+
+        // Display transcript on the glasses if it's a final transcript
+        if(isFinal) {
+            augmentOSLib.sendReferenceCard("Example TPA Live Captions", transcript);
+
+            // We could also send a text wall, if we wanted a different layout
+            // augmentOSLib.sendTextWall(transcript);
+
+            // We could also send a bitmap image
+            // augmentOSLib.sendBitmap(myBitmapHere);
+
+            // We will eventually have a way to send any arbitrary layout using our custom JSON schema
+            // augmentOSLib.sendCustomContent();
+        }
     }
 
 }

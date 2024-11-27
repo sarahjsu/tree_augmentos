@@ -15,17 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExampleAugmentosApp"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.ExampleAugmentosApp.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
+        <!-- Declare the service that will interact with AugmentOS -->
         <service android:name="com.teamopensourcesmartglasses.example_augmentos_app.ExampleAugmentosAppService"
             android:exported="true">
 
@@ -38,6 +29,35 @@
             <meta-data android:name="com.augmentos.TPA" android:value="true" />
         </service>
 
+        <!-- (OPTIONAL) Declare an activity to start AugmentOS if this app is started from the launcher -->
+        <activity
+            android:name=".LauncherActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ExampleAugmentosApp.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
+    <!-- (OPTIONAL - to launch AugmentOS if this app is launched manually)
+    Declare the target package for launching AugmentOS and web browsers -->
+    <queries>
+        <package android:name="com.teamopensmartglasses.augmentos" />
+
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="augmentos" android:host="open" />
+        </intent>
+
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="http" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
 </manifest>
