@@ -6,10 +6,10 @@ This repository provides a **bare-bones example** of how to build a Third-Party 
 
 # How to make an AugmentOS app
 
-## **Braindead Mode: Fork This Repo**
+## **Braindead Mode: Clone This Repo**
 
 If you just want to dive in:
-1. Fork this repo.
+1. Clone this repo.
 2. [Install AugmentOSLib](#augmentoslib-installation)
 3. Build and deploy the app to your AugmentOS Puck or other device running AugmentOS Core.
 
