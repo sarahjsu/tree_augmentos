@@ -14,8 +14,6 @@ import java.util.UUID;
 
 public class ExampleAugmentosAppService extends SmartGlassesAndroidService {
     public final String TAG = "ExampleAugmentOSApp_ExampleService";
-    static final String appName = "Example AugmentOS App";
-    static final String appDescription = "Some description";
 
     // Our instance of the AugmentOS library
     public AugmentOSLib augmentOSLib;
@@ -30,9 +28,6 @@ public class ExampleAugmentosAppService extends SmartGlassesAndroidService {
 
         // Create AugmentOSLib instance with context: this
         augmentOSLib = new AugmentOSLib(this);
-
-        // Register the app with AugmentOS
-        augmentOSLib.registerApp(appName, appDescription);
 
         // Subscribe to a data stream (ex: transcription), and specify a callback function
         augmentOSLib.subscribe(DataStreamType.TRANSCRIPTION_ENGLISH_STREAM, this::processTranscriptionCallback);

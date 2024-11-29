@@ -26,7 +26,8 @@
             </intent-filter>
 
             <!-- Metadata to identify this as an AugmentOS TPA -->
-            <meta-data android:name="com.augmentos.TPA" android:value="true" />
+            <meta-data android:name="com.augmentos.tpa.name" android:value="Example App" />
+            <meta-data android:name="com.augmentos.tpa.description" android:value="Example App Description" />
         </service>
 
         <!-- (OPTIONAL) Declare an activity to start AugmentOS if this app is started from the launcher -->

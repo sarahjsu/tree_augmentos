@@ -32,7 +32,8 @@ If you want to start from scratch:
         <action android:name="AUGMENTOS_INTENT" />
     </intent-filter>
     <!-- Metadata marking this app as a TPA -->
-    <meta-data android:name="com.augmentos.TPA" android:value="true" />
+    <meta-data android:name="com.augmentos.tpa.name" android:value="Example App" />
+    <meta-data android:name="com.augmentos.tpa.description" android:value="Example App Description" />
 </service>
 ```
 
