@@ -1,0 +1,69 @@
+{
+  "name": "Example App",
+  "description": "Example App Description",
+  "settings": [
+    {
+      "type": "group",
+      "title": "General"
+    },
+    {
+      "key": "enableLogging",
+      "type": "toggle",
+      "label": "Enable Logging",
+      "defaultValue": true
+    },
+    {
+      "key": "username",
+      "type": "text",
+      "label": "Username",
+      "defaultValue": "JohnDoe"
+    },
+    {
+      "key": "volumeLevel",
+      "type": "slider",
+      "label": "Volume Level",
+      "min": 0,
+      "max": 100,
+      "defaultValue": 50
+    },
+
+    {
+      "type": "group",
+      "title": "Display"
+    },
+    {
+      "key": "colorScheme",
+      "type": "select",
+      "label": "Color Scheme",
+      "options": [
+        { "label": "Light",  "value": "light" },
+        { "label": "Dark",   "value": "dark" },
+        { "label": "System", "value": "system" }
+      ],
+      "defaultValue": "system"
+    },
+    {
+      "key": "favoriteColors",
+      "type": "multiselect",
+      "label": "Favorite Colors",
+      "options": [
+        { "label": "Red",    "value": "red" },
+        { "label": "Green",  "value": "green" },
+        { "label": "Blue",   "value": "blue" },
+        { "label": "Yellow", "value": "yellow" }
+      ],
+      "defaultValue": ["red", "blue"]
+    },
+
+    {
+      "type": "group",
+      "title": "Info"
+    },
+    {
+      "key": "infoText",
+      "type": "titleValue",
+      "label": "Info Text",
+      "value": "This is a read-only info field"
+    }
+  ]
+}

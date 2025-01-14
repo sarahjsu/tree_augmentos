@@ -1,6 +1,7 @@
 package com.teamopensourcesmartglasses.example_augmentos_app;
 
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,7 +47,33 @@ public class LauncherActivity extends AppCompatActivity {
             }
         } else {
             Log.e(TAG, "Target app not found or cannot handle the deep link");
-            openFallbackWebpage();
+
+
+
+            Intent intent = new Intent();
+            // Set the specific component (package + service class)
+            intent.setComponent(new ComponentName(
+                    "com.teamopensmartglasses.convoscope",
+                    "com.teamopensmartglasses.convoscope.AugmentosService"));
+            // Set the action if required by the receiving app’s intent filter
+            intent.setAction("ACTION_START_CORE");
+
+            // Log what we have
+            Log.d(TAG, "Intent: " + intent.toString());
+            Log.d(TAG, "PackageManager resolves service: " +
+                    getPackageManager().resolveService(intent, 0));
+
+            // Start the service as a foreground service if API level is O or higher
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                Log.d(TAG, "Starting service as foreground service");
+                startForegroundService(intent);
+            } else {
+                Log.d(TAG, "Starting service normally");
+                startService(intent);
+            }
+
+
+            //openFallbackWebpage();
         }
 
         // Finish the activity after attempting to launch the intent

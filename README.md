@@ -31,13 +31,41 @@ If you want to start from scratch:
     <intent-filter>
         <action android:name="AUGMENTOS_INTENT" />
     </intent-filter>
-    <!-- Metadata marking this app as a TPA -->
-    <meta-data android:name="com.augmentos.tpa.name" android:value="Example App" />
-    <meta-data android:name="com.augmentos.tpa.description" android:value="Example App Description" />
 </service>
 ```
 
-4. Build and deploy the app to your AugmentOS Puck or other device running AugmentOS Core.
+4. Create a `tpa_config.json` file in `app/src/main/res/raw/`:
+
+```json
+{
+  "name": "Example App",
+  "description": "Example App Description",
+  "settings": [
+    {
+      "key": "enableLogging",
+      "type": "toggle",
+      "label": "Enable Logging",
+      "defaultValue": true
+    },
+    {
+      "key": "username",
+      "type": "text",
+      "label": "Username",
+      "defaultValue": "JohnDoe"
+    },
+    {
+      "key": "volumeLevel",
+      "type": "slider",
+      "label": "Volume Level",
+      "min": 0,
+      "max": 100,
+      "defaultValue": 50
+    }
+  ]
+}
+```
+
+5. Build and deploy the app to your AugmentOS Puck or other device running AugmentOS Core.
 
 You're now running an AugmentOS TPA!
 
@@ -65,10 +93,6 @@ You're now running an AugmentOS TPA!
 
 ### **AugmentOSLib**
 - The library exposes essential methods to interact with AugmentOS, such as:
-  - **Registering the app** with AugmentOS.
-    ```java
-    augmentOSLib.registerApp("Example App", "Bare-bones AugmentOS app.");
-    ```
   - **Subscribing to data streams**, like real-time transcription.
     ```java
     augmentOSLib.subscribe(DataStreamType.TRANSCRIPTION_ENGLISH_STREAM, this::processTranscriptionCallback);

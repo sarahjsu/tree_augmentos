@@ -13,7 +13,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.UUID;
 
 public class ExampleAugmentosAppService extends SmartGlassesAndroidService {
-    public final String TAG = "ExampleAugmentOSApp_ExampleService";
+    public final String TAG = "ExampleService";
 
     // Our instance of the AugmentOS library
     public AugmentOSLib augmentOSLib;
@@ -41,7 +41,7 @@ public class ExampleAugmentosAppService extends SmartGlassesAndroidService {
         super.onDestroy();
     }
 
-    public void processTranscriptionCallback(String transcript, long timestamp, boolean isFinal) {
+    public void processTranscriptionCallback(String transcript, String language, long timestamp, boolean isFinal) {
         Log.d(TAG, "Got a transcript: " + transcript);
 
         // Display transcript on the glasses if it's a final transcript
