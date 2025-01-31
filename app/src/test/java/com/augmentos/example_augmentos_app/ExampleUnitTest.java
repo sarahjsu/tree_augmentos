@@ -1,4 +1,4 @@
-package com.teamopensourcesmartglasses.example_augmentos_app;
+package com.augmentos.example_augmentos_app;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.teamopensourcesmartglasses.example_augmentos_app;
+package com.augmentos.example_augmentos_app;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.teamopensourcesmartglasses.chatgpt", appContext.getPackageName());
+        assertEquals("com.augmentos.example_augmentos_app", appContext.getPackageName());
     }
 }

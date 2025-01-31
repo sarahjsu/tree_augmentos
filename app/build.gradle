@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.teamopensourcesmartglasses.example_augmentos_app'
+    namespace 'com.augmentos.example_augmentos_app'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.teamopensourcesmartglasses.example_augmentos_app"
+        applicationId "com.augmentos.example_augmentos_app"
         minSdk 30
         targetSdk 33
         versionCode 1

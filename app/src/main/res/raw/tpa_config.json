@@ -1,38 +1,50 @@
 {
   "name": "Example App",
-  "description": "Example App Description",
+  "description": "An example app for AugmentOS",
+  "version": "1.0.0",
   "settings": [
     {
       "type": "group",
-      "title": "General"
+      "title": "This is a settings page example"
     },
     {
-      "key": "enableLogging",
+      "key": "infoText",
+      "type": "titleValue",
+      "label": "Here's a title for some info text",
+      "value": "Here's a body for some info text"
+    },
+    {
+      "type": "group",
+      "title": "Here are some possible settings you can use"
+    },
+    {
+      "key": "exampleToggleSetting",
       "type": "toggle",
-      "label": "Enable Logging",
+      "label": "This is a toggle",
       "defaultValue": true
     },
     {
-      "key": "username",
+      "key": "exampleTextSetting",
       "type": "text",
-      "label": "Username",
-      "defaultValue": "JohnDoe"
+      "label": "This is a text box",
+      "defaultValue": "Some good default here"
     },
     {
-      "key": "volumeLevel",
+      "key": "exampleSliderSetting",
       "type": "slider",
-      "label": "Volume Level",
+      "label": "This is a slider",
       "min": 0,
       "max": 100,
       "defaultValue": 50
     },
-
     {
-      "type": "group",
-      "title": "Display"
+      "key": "selectInfoText",
+      "type": "titleValue",
+      "label": "This is a select dropdown",
+      "value": "Use this to have users select one of a few options"
     },
     {
-      "key": "colorScheme",
+      "key": "exampleSelectSetting",
       "type": "select",
       "label": "Color Scheme",
       "options": [
@@ -43,7 +55,13 @@
       "defaultValue": "system"
     },
     {
-      "key": "favoriteColors",
+      "key": "multiselectInfoText",
+      "type": "titleValue",
+      "label": "This is a multiselect",
+      "value": "Use this to have users select one or more of a few options"
+    },
+    {
+      "key": "exampleMultiselectSetting",
       "type": "multiselect",
       "label": "Favorite Colors",
       "options": [
@@ -54,16 +72,9 @@
       ],
       "defaultValue": ["red", "blue"]
     },
-
     {
       "type": "group",
-      "title": "Info"
-    },
-    {
-      "key": "infoText",
-      "type": "titleValue",
-      "label": "Info Text",
-      "value": "This is a read-only info field"
+      "title": "For more information, check out docs.augmentos.org"
     }
   ]
 }
