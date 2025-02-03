@@ -6,7 +6,7 @@ This repository provides a **bare-bones example** of how to build a Third-Party 
 
 # How to make an AugmentOS app
 
-## **Braindead Mode: Clone This Repo**
+## **Super Easy Mode: Clone This Repo**
 
 If you just want to dive in:
 1. Clone this repo.
