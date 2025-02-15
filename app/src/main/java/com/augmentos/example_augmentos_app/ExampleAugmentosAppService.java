@@ -34,7 +34,9 @@ public class ExampleAugmentosAppService extends SmartGlassesAndroidService {
     @Override
     public void onCreate() {
         super.onCreate();
+    }
 
+    public void setup(){
         // Create AugmentOSLib instance
         augmentOSLib = new AugmentOSLib(this);
 
