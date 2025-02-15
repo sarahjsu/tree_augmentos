@@ -12,9 +12,20 @@ import com.augmentos.augmentoslib.events.SpeechRecOutputEvent;
 import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import java.io.OutputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ExampleAugmentosAppService extends SmartGlassesAndroidService {
-//
+    //
     public static final String TAG = "LiveCaptionsService";
 
     public AugmentOSLib augmentOSLib;
@@ -99,7 +110,7 @@ public class ExampleAugmentosAppService extends SmartGlassesAndroidService {
     }
 
     @Subscribe
-    public void onTranscript(SpeechRecOutputEvent event) {
+    public void onTranscript(SpeechRecOutputEvent event){
         String text = event.text;
         String languageCode = event.languageCode;
         long time = event.timestamp;
@@ -124,6 +135,55 @@ public class ExampleAugmentosAppService extends SmartGlassesAndroidService {
         if (isFinal) {
             Log.d(TAG, "fINAL STRING?!?!?!?!??!? " + transcript);
 //            get transcription here
+
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+            // Submit the network task
+            executorService.execute(() -> {
+                String urlString = "https://rnkxj-68-65-164-170.a.free.pinggy.link/api/transcript";; // Replace with your actual URL
+                String requestBody = transcript;
+
+                try {
+                    // Create URL and open connection
+                    URL url = new URL(urlString);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+                    // Configure connection
+                    connection.setRequestMethod("POST");
+                    connection.setDoOutput(true);
+                    connection.setRequestProperty("Content-Type", "text/plain"); // Content type for plain text
+
+                    // Write request body
+                    try (OutputStream os = connection.getOutputStream()) {
+                        os.write(requestBody.getBytes("utf-8"));
+                    }
+
+                    // Get response code
+                    int responseCode = connection.getResponseCode();
+                    System.out.println("Response Code: " + responseCode);
+
+                    // Read response
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                            StringBuilder response = new StringBuilder();
+                            String line;
+                            while ((line = reader.readLine()) != null) {
+                                response.append(line.trim());
+                            }
+                            System.out.println("Response: " + response.toString());
+                        }
+                    } else {
+                        System.out.println("Request failed with response code: " + responseCode);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+
+            // Shutdown the executor service
+            executorService.shutdown();
+
             showTranscriptsToUser(transcript, true);
             return;
         }
